@@ -21,10 +21,10 @@ typedef struct typebuiltin
 	int (*p)(char **args, char **env);
 } built_t;
 
-/* Function Declarations for builtin shell commands */
-int shell_env(char **args, char **env);
-int shell_exit(char **args, char **env);
-int shell_built(char **args, char **env);
+
+int sh_env(char **args, char **env);
+int sh_exit(char **args, char **env);
+int sh_built(char **args, char **env);
 
 void free_array(char **array);
 void free_string(int, const unsigned int n, ...);
