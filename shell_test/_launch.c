@@ -1,30 +1,36 @@
-#include "shell.h"
-
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 /**
- * sh_launch - entry point.
- * @char: character type
- * @args: arguments
- * return: always 1
- */
+  @char: Launch a program and wait for it to terminate.
+  @args: args Null terminated list of arguments (including program).
+  @return Always returns 1
+*/
 
 int sh_launch(char **args)
 {
-  pid_t pid, wpid;
-  int status;
+	pid_t pid;
+	int status;
 
-  pid = fork();
-  if (pid == 0) {
-    if (execvp(args[0], args) == -1) {
-      perror("sh");
-    }
-    exit(EXIT_FAILURE);
-  } else if (pid < 0) {
-    perror("sh");
-  } else {
-    do {
-      wpid = waitpid(pid, &status, WUNTRACED);
-    } while (!WIFEXITED(status) && !WIFSIGNALED(status));
-  }
+	pid = fork();
+	if (pid == 0) {
 
-  return 1;
+		if (execvp(args[0], args) == -1) {
+			perror("sh");
+		}
+		exit(EXIT_FAILURE);
+	} else if (pid < 0) {
+  
+		perror("sh");
+	} else {
+    
+		do {
+			waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+
+	return 1;
 }

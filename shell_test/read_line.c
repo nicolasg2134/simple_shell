@@ -1,42 +1,61 @@
-#define SH_RL_BUFSIZE 1024
-/**
- *  void - entry point.
- *  
- *  return: status code
- */
+#include "shell.h"
 
+/**
+ *  sh_read_line - entry point.
+ *  @void: void arguments
+ *  return: line
+ */
 
 char *sh_read_line(void)
 {
-  int bufsize = SH_RL_BUFSIZE;
-  int position = 0;
-  char *buffer = malloc(sizeof(char) * bufsize);
-  int c;
+#ifdef SH_USE_STD_GETLINE
 
-  if (!buffer) {
-    fprintf(stderr, "sh: allocation error\n");
-    exit(EXIT_FAILURE);
-  }
+	char *line = NULL;
+	ssize_t bufsize = 0;
+	if (getline(&line, &bufsize, stdin) == -1) {
+		if (feof(stdin)) {
+			exit(EXIT_SUCCESS);
+		} else  {
+			perror("sh: getline\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	return line;
+#else
+#define SH_RL_BUFSIZE 1024
+	int bufsize = SH_RL_BUFSIZE;
+	int position = 0;
+	char *buffer = malloc(sizeof(char) * bufsize);
+	int c;
 
-  while (1) {
+	if (!buffer) {
+		fprintf(stderr, "sh: allocation error\n");
+		exit(EXIT_FAILURE);
+	}
 
-    c = getchar();
+	while (1) {
 
-    if (c == EOF || c == '\n') {
-      buffer[position] = '\0';
-      return buffer;
-    } else {
-      buffer[position] = c;
-    }
-    position++;
+		c = getchar();
 
-    if (position >= bufsize) {
-      bufsize += SH_RL_BUFSIZE;
-      buffer = realloc(buffer, bufsize);
-      if (!buffer) {
-        fprintf(stderr, "sh: allocation error\n");
-        exit(EXIT_FAILURE);
-      }
-    }
-  }
+		if (c == EOF) {
+			exit(EXIT_SUCCESS);
+		} else if (c == '\n') {
+			buffer[position] = '\0';
+			return buffer;
+		} else {
+			buffer[position] = c;
+		}
+		position++;
+
+
+		if (position >= bufsize) {
+			bufsize += SH_RL_BUFSIZE;
+			buffer = realloc(buffer, bufsize);
+			if (!buffer) {
+				fprintf(stderr, "sh: allocation error\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+	}
+#endif
 }
