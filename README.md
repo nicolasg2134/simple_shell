@@ -9,7 +9,7 @@ Installing
 Pull "main" branch from currernt repository.
 git pull main https://github.com/nicolasg2134/simple_shell
 Compile all C and header files in the root directory.
-$ gcc -Wall -Wextra -Werror -pedantic -o haash
+$ gcc -o hsh
 Run the output file locally to enter into our custom simple shell.
 $ ./hsh
 Enjoy using the simple shell!
