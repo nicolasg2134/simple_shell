@@ -17,10 +17,10 @@ char *_strcpy(char *dest, const char *src);
 char *_strcon(char *dest, char *src);
 int _strcmp(char *src1, char *src2);
 int _strlen(char *str);
-char *exec(char **file);
+char *checkexec(char **file);
 int checkbin(char *input, char **tokens);
-int func_exit(void);
-int func_env(void);
+int fexit(void);
+int fenv(void);
 
 /**
  * struct builtin - built in of the shell

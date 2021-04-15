@@ -11,18 +11,18 @@
 int checkbin(char *input, char **tokens)
 {
 	int a, b;
-	built_in bit[] = {
-		{func_env, "env"},
-		{func_exit, "exit"},
+	built_in bi[] = {
+		{fenv, "env"},
+		{fexit, "exit"},
 		{NULL, NULL}
 	};
 
-	for (a = 0; bit[a].name != NULL; a++)
+	for (a = 0; bi[a].name != NULL; a++)
 	{
-		if (_strcmp(bit[a].name, input) == 0)
+		if (_strcmp(bi[a].name, input) == 0)
 		{
 			free(tokens), free(input);
-			b = bit[a].func();
+			b = bi[a].func();
 			return (b);
 		}
 	}
@@ -30,12 +30,12 @@ int checkbin(char *input, char **tokens)
 }
 
 /**
- * func_env - prints enviromental variables
+ * fenv - prints enviromental variables
  *
  * Return: 0
  */
 
-int func_env(void)
+int fenv(void)
 {
 	int a;
 	size_t b = 0;
@@ -50,12 +50,12 @@ int func_env(void)
 }
 
 /**
- * func_exit - exits the shell
+ * fexit - exits the shell
  *
  * Return: 1
  */
 
-int func_exit(void)
+int fexit(void)
 {
 	return (1);
 }

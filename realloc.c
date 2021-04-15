@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _realloc - memory space allocated
+ * _realloc - adjust memory space allocated
  *
  * @tokens: tokens
  * Return: new array of strings
