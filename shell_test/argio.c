@@ -1,9 +1,16 @@
 #include "shell.h"
 /**
- * @brief sh_num_builtins
- * 
- * @return sizeof builtin_str, char *
+ * @brief builtins_func
+ * @char: pointer arg char
+ * @return sizeof builtin_str, char *, struct
  */
+
+int (*builtin_func[]) (char **) = {
+	&sh_cd,
+	&sh_help,
+    &sh_exit
+};
+
 int sh_num_builtins() {
 	return sizeof(builtin_str) / sizeof(char *);
 }
