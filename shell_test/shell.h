@@ -1,20 +1,36 @@
 #ifndef SHELL_H
 #define SHELL_H
 #define SH_TOK_BUFSIZE 64
+#define SH_RL_BUFSIZE 1024
 #define SH_TOK_DELIM " \t\r\n\a"
 
-#include <sys/wait.h>
-#include <sys/types.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
 #include <string.h>
+#include <limits.h>
+#include <math.h>
+#include <stddef.h>
+#include <time.h>
+#include <stdarg.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <errno.h>
 
 
 char *builtin_str[] = {
 	"cd",
 	"help",
   	"exit"
+};
+
+int (*builtin_func[]) (char **) = {
+	&sh_cd,
+	&sh_help,
+    &sh_exit
 };
 
 int sh_cd(char **args);

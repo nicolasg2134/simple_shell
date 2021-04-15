@@ -1,9 +1,18 @@
-#include <sys/wait.h>
-#include <sys/types.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
 #include <string.h>
+#include <limits.h>
+#include <math.h>
+#include <stddef.h>
+#include <time.h>
+#include <stdarg.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <errno.h>
 
 int sh_cd(char **args);
 int sh_help(char **args);
@@ -18,20 +27,13 @@ char *builtin_str[] = {
 int (*builtin_func[]) (char **) = {
 	&sh_cd,
 	&sh_help,
-  &sh_exit
+  	&sh_exit
 };
 
 int sh_num_builtins() {
 	return sizeof(builtin_str) / sizeof(char *);
 }
 
-
-
-/**
-   @brief Bultin command: change directory.
-   @param args List of args.  args[0] is "cd".  args[1] is the directory.
-   @return Always returns 1, to continue executing.
-*/
 int sh_cd(char **args)
 {
 	if (args[1] == NULL) {
@@ -44,11 +46,7 @@ int sh_cd(char **args)
 	return 1;
 }
 
-/**
-   @brief Builtin command: print help.
-   @param args List of args.  Not examined.
-   @return Always returns 1, to continue executing.
-*/
+
 int sh_help(char **args)
 {
 	int i;
@@ -64,21 +62,12 @@ int sh_help(char **args)
 	return 1;
 }
 
-/**
-   @brief Builtin command: exit.
-   @param args List of args.
-   @return Always returns 0.
-*/
+
 int sh_exit(char **args)
 {
 	return 0;
 }
 
-/**
-  @brief Launch a program and wait for it to terminate.
-  @param args Null terminated list of arguments (including program).
-  @return Always returns 1, to continue execution.
-*/
 int sh_launch(char **args)
 {
 	pid_t pid;
