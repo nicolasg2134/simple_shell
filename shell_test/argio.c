@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "built.h"
 /**
  * @brief builtins_func
  * @char: pointer arg char

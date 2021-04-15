@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "built.h"
 /**
  *  sh_loop - entry point.
  *  

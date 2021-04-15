@@ -25,12 +25,7 @@ char *builtin_str[] = {
 	"cd",
 	"help",
   	"exit"
-};
 
-int (*builtin_func[]) (char **) = {
-	&sh_cd,
-	&sh_help,
-    &sh_exit
 };
 
 int sh_cd(char **args);
