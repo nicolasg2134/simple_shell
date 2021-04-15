@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  *  sh_read_line - entry point.
  *  
