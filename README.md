@@ -1,38 +1,65 @@
-Getting Started
-Pull the latest version of the MASTER branch, and compile all .c and .h files.
+# Simple_shell
 
-Prerequisites
-Ubuntu LTS v14.04
-GCC installed on terminal.
-Basic understanding of C/UNIX-based shells.
-Installing
-Pull "main" branch from currernt repository.
-git pull main https://github.com/nicolasg2134/simple_shell
-Compile all C and header files in the root directory.
-$ gcc -o hsh
-Run the output file locally to enter into our custom simple shell.
-$ ./hsh
-Enjoy using the simple shell!
-$ echo "hello, world!"
-Running the tests
-Explain how to run the automated tests for this system
+Simple_shell is a project created to simulate a command interpeter. In it you can write the usual commands as an standart input to be executed.
 
-Break down into end to end tests
-Explain what these tests test and why
+## File Contents
+This repository contains the following files:
 
-Give an example
-And coding style tests
-Explain what these tests test and why
+|   **File**   |   **Description**   |
+| -------------- | --------------------- |
+| simple_shell.c | main function |
+| shell.h | header file |
+| string.c | functions to work with strings, concatenate, etc |
+| AUTHORS | creators |
+| man_1_simple_shell | man page |
 
-Give an example
-Built With
-Emacs - The Obvious Choice in text editors.
-SandBox Intranet - Dev environment management.
-GIT - Console command.
-Authors
-Joaquin Pintaluba -  Nicolas Gomez
 
-See also the list of contributors who participated in this project.
+# To utilize this shell, follow the next steps:
 
-License
-Holberton Uruguay: Low-level-progrsmming Project
+## Clone the repository
+
+This way you will have all the files necessary.
+
+```
+$ git clone https://github.com/nicolasg2134/simple_shell
+```
+
+## Compile it and start
+
+To start simple_shell you just need to compile using.
+
+```
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh.
+```
+
+### Start the shell!
+
+```
+./hsh
+```
+
+## How to use it:
+
+```
+hsh$ /bin/ls
+hsh$ ls -la
+hsh$ pwd
+```
+## Commands
+|   **Command**   |   **Description**   |
+| -------------- | --------------------- |
+| ls [option] | List directory contents |
+| pwd | prints working directory |
+| cp | Copy Files |
+| mv | Move or rename files |
+| Ctrl + C | The simple shell will be terminated |
+| Ctrl + D | The simple shell will be terminated |
+
+## Builtins
+|   **Command**   |   **Description**   |
+| -------------- | --------------------- |
+| env |  Run a program in a modified enviroment |
+| exit | Cause normal process termination |
+
+## Authors
+Joaquin Pintaluba | Nicolás Gómez
