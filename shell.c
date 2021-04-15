@@ -105,10 +105,11 @@ int sh_launch(char **args)
 }
 
 /**
-   @brief Execute shell built-in or launch program.
-   @param args Null terminated list of arguments.
-   @return 1 if the shell should continue running, 0 if it should terminate
-*/
+ * sh_execute - entry point.
+ * @char: character type
+ * @args: charged arguments
+ * return: always 1, sh_lunch
+ */
 int sh_execute(char **args)
 {
 	int i;
@@ -128,12 +129,15 @@ int sh_execute(char **args)
 }
 
 /**
-   @brief Read a line of input from stdin.
-   @return The line from stdin.
-*/
+ *  sh_read_line - entry point.
+ *  
+ *  return: line
+ */
+
 char *sh_read_line(void)
 {
 #ifdef SH_USE_STD_GETLINE
+
 	char *line = NULL;
 	ssize_t bufsize = 0;
 	if (getline(&line, &bufsize, stdin) == -1) {
@@ -186,11 +190,14 @@ char *sh_read_line(void)
 
 #define SH_TOK_BUFSIZE 64
 #define SH_TOK_DELIM " \t\r\n\a"
+
 /**
-   @brief Split a line into tokens (very naively).
-   @param line The line.
-   @return Null-terminated array of tokens.
-*/
+ * sh_split_line - entry point.
+ * @char: character type
+ * @line: pointer to line
+ * return: tokens line
+ */
+
 char **sh_split_line(char *line)
 {
 	int bufsize = SH_TOK_BUFSIZE, position = 0;
@@ -225,8 +232,10 @@ char **sh_split_line(char *line)
 }
 
 /**
-   @brief Loop getting input and executing it.
-*/
+ *  sh_loop - entry point.
+ *  
+ *  return: status code
+ */
 void sh_loop(void)
 {
 	char *line;
@@ -245,11 +254,11 @@ void sh_loop(void)
 }
 
 /**
-   @brief Main entry point.
-   @param argc Argument count.
-   @param argv Argument vector.
-   @return status code
-*/
+ *  Main - entry point.
+ *  @argc: Argument count.
+ *  @argv: Argument vector.
+ *  return: status code
+ */
 int main(int argc, char **argv)
 {
 	sh_loop();

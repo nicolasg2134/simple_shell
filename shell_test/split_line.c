@@ -1,11 +1,4 @@
-#define SH_TOK_BUFSIZE 64
-#define SH_TOK_DELIM " \t\r\n\a"
-#include <sys/wait.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "shell.h"
 /**
  * sh_split_line - entry point.
  * @char: character type
