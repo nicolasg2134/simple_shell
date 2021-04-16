@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * checkbin - checks if the input
  * checkbin - checks if the input is a built in and executes it
+ *
  * @input: input
  * @tokens: tokens
  * Return: 0 if succed, -1 if built in doesn´t exist
@@ -12,10 +12,10 @@ int checkbin(char *input, char **tokens)
 {
 	int a, b;
 	built_in bi[] = {
-		{func_env, "env"},
-		{func_exit, "exit"),
+		{fenv, "env"},
+		{fexit, "exit"},
 		{NULL, NULL}
-};
+	};
 
 	for (a = 0; bi[a].name != NULL; a++)
 	{
@@ -30,13 +30,11 @@ int checkbin(char *input, char **tokens)
 }
 
 /**
- * func_env - prints enviromental variable
+ * fenv - prints enviromental variables
  *
  * Return: 0
  */
 
-
-int func_env(void)
 int fenv(void)
 {
 	int a;
@@ -52,13 +50,11 @@ int fenv(void)
 }
 
 /**
- * func_exit - exits the shell
+ * fexit - exits the shell
  *
  * Return: 1
  */
 
-
-int func_exit(void);
 int fexit(void)
 {
 	return (1);
