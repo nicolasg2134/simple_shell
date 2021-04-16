@@ -7,7 +7,7 @@ This repository contains the following files:
 
 |   **File**   |   **Description**   |
 | -------------- | --------------------- |
-| shell.c | main function |
+| simple_shell.c | main function |
 | shell.h | header file |
 | string.c | functions to work with strings, concatenate, etc |
 | AUTHORS | creators |
